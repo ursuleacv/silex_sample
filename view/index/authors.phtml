@@ -1,0 +1,24 @@
+<?php $results = $pagerfanta->getCurrentPageResults() ?>
+
+<?php if ( $results ): ?>
+	<?php foreach ( $results as $author ): ?>
+		<div>
+			<?php echo $author->name ?>
+			<div>
+				<?php foreach ( $author->books as $book ): ?>
+					<div>
+						<a href="<?php echo $app['url_generator']->generate('book', array('id' => $book->id)) ?>"><?php echo $book->name ?></a>
+					</div>
+				<?php endforeach ?>
+			</div>
+		</div>
+	<?php endforeach ?>
+
+	<?php if ( $pagerfanta->haveToPaginate() ): ?>
+		<div class="pagerfanta">
+			<?php echo $html ?>
+		</div>
+	<?php endif ?>
+<?php else: ?>
+	Ничего не найдено
+<?php endif ?>
